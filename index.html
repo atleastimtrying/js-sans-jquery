@@ -28,7 +28,6 @@
         <li>$('.thing').hide();</li>
         <li>$('.thing').addClass('thingier');</li>
         <li>$('.thing').slideDown('fast');</li>
-        <li>$.get('/stuff', function(stuff){console.log('stuff');});</li>
         <li>$('li:last-child').before('&lt;li&gt;penultimate child&lt;/li&gt;');</li>
       </ul>
     </section>
@@ -53,6 +52,16 @@
       </ul>
     </section>
     <section>
+      <pre>$('#thing');</pre>
+      <pre>document.getElementById('thing');</pre>
+      <pre>$('.things');</pre>
+      <pre>document.getElementsByClassName('things');</pre>
+      <pre>$('input');</pre>
+      <pre>document.getElementsByTagName('input');</pre>
+      <pre>$('#thing .list li');</pre>
+      <pre>document.querySelector('#thing .list li');</pre>
+    </section>
+    <section>
       <h2>Reading the DOM</h2> 
       <ul>
         <li>what is a dom element?</li>
@@ -68,9 +77,24 @@
       <h2>Manipulating the DOM</h2> 
       <ul>
         <li>The DOM as strings</li>
+        <li>slower</li>
+        <li>less verbose</li>
+        <li>more easily udnerstood</li>
         <li>The DOM as objects</li>
-        <li>before/after/html/remove</li>
+        <li>creates reusable dom elements</li>
+        <li>allows for easy referencing</li>
       </ul>
+    </section>
+    <section>
+      <pre>$('#thing').html('&lt;p&gt;hello&lt;p&gt;');</pre>
+      <pre>document.getElementById('thing').innerHTML = '&lt;p&gt;hello&lt;p&gt;';</pre>
+      <pre>$('.things').append('&lt;span&gt;thing&lt;span&gt;');</pre>
+      <pre>document.querySelector('.things').innerHTML += '&lt;p&gt;hello&lt;p&gt;';</pre>
+      <pre>var thing = document.createElement('p');
+document.querySelector('.things').appendChild(thing);
+      </pre>
+      <pre>$('#thing p').remove();</pre>
+      <pre>document.getElementById('#thing').removeChild('p');</pre>
     </section>
     <section>
       <h2>Animation/DHTML</h2> 
@@ -82,6 +106,22 @@
       </ul>
     </section>
     <section>
+      <pre>$('#thing').animate({top:'12px', left: '12px'});</pre>
+      <pre>document.getElementById('thing').classList.add('tadaa');</pre>
+      <pre>#thing{
+  position:absolute;
+  top:0px;
+  left:0px;
+  transition:all 0.5s ease-out;
+}
+
+#thing{
+  top:12px;
+  left:12px;
+}
+      </pre>
+    </section>
+    <section>
       <h2>Handling Events</h2> 
       <ul>
         <li>listeners vs assignment</li>
@@ -90,14 +130,28 @@
         <li>What's in an event object?</li>
         <li>What contexts do you get back?</li>
         <li>'live' or 'deferred' bindings</li>
+        <li>custom/triggering events.</li>
       </ul>
     </section>
     <section>
-      <h2>Ajax</h2> 
-      <ul>
-        <li>based on IE</li>
-        <li></li>
-      </ul>
+      <pre>$('#thing').click(function(){console.log('hello world!');});</pre>
+      <pre>document.getElementById('thing').addEventListener('click', function(){
+  console.log('hello world!');
+}, false);</pre>
+      <pre>$(window).trigger('newMessage', { message: "Hello World!", time: new Date()})</pre>
+      <pre>var event = new CustomEvent(
+  "newMessage",
+  {
+    detail: {
+      message: "Hello World!",
+      time: new Date()
+    },
+    bubbles: true,
+    cancelable: true
+  }
+);
+window.dispatchEvent(event);
+      </pre>
     </section>
     <section>
       <h2>Discovering the DOM</h2> 
@@ -116,6 +170,7 @@
         <li>It's why it's so big!</li>
         <li>Polyfills are an answer</li>
         <li>The DOM tends to be honest.</li>
+        <li>Use feature detection.</li>
       </ul>
     </section>
     <section>
@@ -137,14 +192,7 @@
         <li>You choose the amount of code you want</li>
         <li>All open source</li>
         <li>Easy to adapt/ roll your own</li>
-      </ul>
-    </section>
-    <section>
-      <h2>jQuery 2.0 a lighter approach</h2> 
-      <ul>
-        <li>It's a departure from ie6</li>
-        <li>You can cherrypick the bits you need</li>
-        <li>It behaves more like a cohesive ste of microframeworks</li>
+        <li>http://microjs.com/</li>
       </ul>
     </section>
     <section>
@@ -157,6 +205,14 @@
         <li>I rely on jQuery&rsquo;s events.</li>
         <li>I rely on jQuery&rsquo;s AJAX methods.</li>
         <li>I rely on jQuery when using IE.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Useful Links</h2>
+      <ul>
+        <li><a href='http://www.leebrimelow.com/native-methods-jquery/'>Lee Brimelow</a></li>
+        <li><a href='https://developer.mozilla.org/en-US/docs/JavaScript'>MDN</a></li>
+        <li><a href='http://net.tutsplus.com/tutorials/javascript-ajax/from-jquery-to-javascript-a-reference/'>tuts plus</a></li>
       </ul>
     </section>
   </article>
